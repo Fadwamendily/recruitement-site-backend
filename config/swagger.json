@@ -1,0 +1,1723 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "website",
+      "description": "job website",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:5000",
+    "basePath": "",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+
+    "paths": {
+
+
+    "/admin/addadmin": {
+        "post": {
+          "tags": [
+            "admin"
+          ],
+          "description": "Create new admin in system",
+          "parameters": [
+            {
+              "name": "admin",
+              "in": "body",
+              "description": "admin that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Admin"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New admin is created",
+              "schema": {
+                "$ref": "#/definitions/Admin"
+              }
+            }
+          }
+        }
+      },
+
+
+
+      "/entreprise/addentreprise": {
+        "post": {
+          "tags": [
+            "entreprise"
+          ],
+          "description": "Create new entreprise in system",
+          "parameters": [
+            {
+              "name": "entreprise",
+              "in": "body",
+              "description": "entreprise that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New entreprise is created",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          }
+        }
+      },
+
+      "/entreprise/allentreprise": {
+   
+        "get": {
+          "tags": [
+            "entreprise"
+          ],
+          "summary": "Get all entreprise in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          }
+        }
+      },
+
+      "/entreprise/getentreprisebyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of entreprise that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "entreprise"
+          ],
+          "summary": "Get entreprise with given ID",
+          "responses": {
+            "200": {
+              "description": "entreprise is found",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          }
+        
+        }
+      },
+
+      "/entreprise/deleteentreprise/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of entreprise that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete entreprise with given ID",
+          "tags": [
+            "entreprise"
+          ],
+          "responses": {
+            "200": {
+              "description": "entreprise is deleted",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          }
+        }
+      },
+
+      "/entreprise/updateentreprise/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of entreprise that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update entreprise with give ID",
+          "tags": [
+            "entreprise"
+          ],
+          "parameters": [
+            {
+              "name": "entreprise",
+              "in": "body",
+              "description": "entreprise with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/entreprise"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "entreprise is updated",
+              "schema": {
+                "$ref": "#/definitions/Entreprise"
+              }
+            }
+          }
+        }
+      },
+
+
+      "/condidat/addcondidat": {
+        "post": {
+          "tags": [
+            "condidat"
+          ],
+          "description": "Create new condidat in system",
+          "parameters": [
+            {
+              "name": "condidat",
+              "in": "body",
+              "description": "condidat that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New condidat is created",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          }
+        }
+      },
+      "/condidat/allcondidat": {
+   
+        "get": {
+          "tags": [
+            "condidat"
+          ],
+          "summary": "Get all condidat in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          }
+        }
+      },
+      "/condidat/getcondidatbyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of condidat that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "condidat"
+          ],
+          "summary": "Get condidat with given ID",
+          "responses": {
+            "200": {
+              "description": "condidat is found",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          }
+        
+        }
+      },
+
+      "/condidat/deletecondidat/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of condidat that we want to find",
+                "type": "string"
+              }
+            ],
+       
+            "delete": {
+              "summary": "Delete condidat with given ID",
+              "tags": [
+                "condidat"
+              ],
+              "responses": {
+                "200": {
+                  "description": "condidat is deleted",
+                  "schema": {
+                    "$ref": "#/definitions/Condidat"
+                  }
+                }
+              }
+            }
+      },
+      "/condidat/updatecondidat/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of condidat that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update condidat with give ID",
+          "tags": [
+            "condidat"
+          ],
+          "parameters": [
+            {
+              "name": "condidat",
+              "in": "body",
+              "description": "condidat with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "condidat is updated",
+              "schema": {
+                "$ref": "#/definitions/Condidat"
+              }
+            }
+          }
+        }
+      },
+
+
+
+
+      "/condidature/addcondidature": {
+        "post": {
+          "tags": [
+            "condidature"
+          ],
+          "description": "Create new condidature in system",
+          "parameters": [
+            {
+              "name": "cv",
+              "in": "formData",
+              "required": true,
+              "description": "cv of condidat ",
+              "type": "file",
+              "items":{
+                  "name":"cv",
+                  "type":"file",
+                  "in":"formData",
+                  "required": true,
+                  "description": "cv that we want to find"
+              }
+          },
+          {
+            "name": "LM",
+            "in": "formData",
+            "required": true,
+            "description": "LM of condidat ",
+            "type": "file",
+            "items":{
+                "name":"LM",
+                "type":"file",
+                "in":"formData",
+                "required": true,
+                "description": "LMt that we want to find"
+            }
+        }
+          ],
+          "produces": [
+            "multipart/form-data"
+          ],
+          "responses": {
+            "200": {
+              "description": "New condidature is created",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          }
+        }
+      },
+      "/condidature/allcondidature": {
+   
+        "get": {
+          "tags": [
+            "condidature"
+          ],
+          "summary": "Get all condidature in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          }
+        }
+      },
+      "/condidature/getcondidaturebyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of condidature that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "condidature"
+          ],
+          "summary": "Get condidature with given ID",
+          "responses": {
+            "200": {
+              "description": "condidature is found",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          }
+        
+        }
+      },
+      "/condidature/deletecondidature/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of condidature that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete condidature with given ID",
+          "tags": [
+            "condidature"
+          ],
+          "responses": {
+            "200": {
+              "description": "condidature is deleted",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          }
+        }
+      },
+      "/condidature/updatecondidature/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of condidature that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update condidature with give ID",
+          "tags": [
+            "condidature"
+          ],
+          "parameters": [
+            {
+              "name": "condidature",
+              "in": "body",
+              "description": "condidature with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "condidature is updated",
+              "schema": {
+                "$ref": "#/definitions/Condidature"
+              }
+            }
+          }
+        }
+      },
+
+
+
+
+      "/commentaire/addcommentaire": {
+        "post": {
+          "tags": [
+            "commentaire"
+          ],
+          "description": "Create new commentaire in system",
+          "parameters": [
+            {
+              "name": "commentaire",
+              "in": "body",
+              "description": "commentaire that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New commentaire is created",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          }
+        }
+      },
+      "/commentaire/allcommentaire": {
+   
+        "get": {
+          "tags": [
+            "commentaire"
+          ],
+          "summary": "Get all commentaire in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          }
+        }
+      },
+      "/commentaire/getcommentairebyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of commentaire that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "commentaire"
+          ],
+          "summary": "Get commentaire with given ID",
+          "responses": {
+            "200": {
+              "description": "commentaire is found",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          }
+        
+        }
+      },
+      "/commentaire/deletecommentaire/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of commentaire that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete commentaire with given ID",
+          "tags": [
+            "commentaire"
+          ],
+          "responses": {
+            "200": {
+              "description": "commentaire is deleted",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          }
+        }
+      },
+      "/commentaire/updatecommentaire/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of commentaire that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update commentaire with give ID",
+          "tags": [
+            "commentaire"
+          ],
+          "parameters": [
+            {
+              "name": "commentaire",
+              "in": "body",
+              "description": "commentaire with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "commentaire is updated",
+              "schema": {
+                "$ref": "#/definitions/Commentaire"
+              }
+            }
+          }
+        }
+      },
+
+
+
+      "/offreEmploi/addoffreEmploi": {
+        "post": {
+          "tags": [
+            "offreEmploi"
+          ],
+          "description": "Create new offreEmploi in system",
+          "parameters": [
+            {
+              "name": "offreEmploi",
+              "in": "body",
+              "description": "offreEmploi that we want to create",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New offreEmploi is created",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          }
+        }
+      },
+      "/offreEmploi/alloffreEmploi": {
+   
+        "get": {
+          "tags": [
+            "offreEmploi"
+          ],
+          "summary": "Get all offreEmploi in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          }
+        }
+      },
+      "/offreEmploi/getoffreEmploibyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of offreEmploi that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "offreEmploi"
+          ],
+          "summary": "Get offreEmploi with given ID",
+          "responses": {
+            "200": {
+              "description": "offreEmploi is found",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          }
+        
+        }
+      },
+      "/offreEmploi/deleteoffreEmploi/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of offreEmploi that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete offreEmploi with given ID",
+          "tags": [
+            "offreEmploi"
+          ],
+          "responses": {
+            "200": {
+              "description": "offreEmploi is deleted",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          }
+        }
+      },
+      "/offreEmploi/updateoffreEmploi/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of offreEmploi that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update offreEmploi with give ID",
+          "tags": [
+            "offreEmploi"
+          ],
+          "parameters": [
+            {
+              "name": "offreEmploi",
+              "in": "body",
+              "description": "offreEmploi with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "offreEmploi is updated",
+              "schema": {
+                "$ref": "#/definitions/OffreEmploi"
+              }
+            }
+          }
+        }
+      },
+
+
+
+      "/test/addtest": {
+        "post": {
+          "tags": [
+            "test"
+          ],
+          "description": "Create new test in system",
+          "parameters": [
+            {
+              "name": "test",
+              "in": "body",
+              "description": "test that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New test is created",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          }
+        }
+      },
+      "/test/alltest": {
+   
+        "get": {
+          "tags": [
+            "test"
+          ],
+          "summary": "Get all test in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          }
+        }
+      },
+      "/test/gettestbyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of test that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "test"
+          ],
+          "summary": "Get test with given ID",
+          "responses": {
+            "200": {
+              "description": "test is found",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          }
+        
+        }
+      },
+      "/test/deletetest/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of test that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete test with given ID",
+          "tags": [
+            "test"
+          ],
+          "responses": {
+            "200": {
+              "description": "test is deleted",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          }
+        }
+      },
+      "/test/updatetest/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of test that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update test with give ID",
+          "tags": [
+            "test"
+          ],
+          "parameters": [
+            {
+              "name": "test",
+              "in": "body",
+              "description": "test with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "test is updated",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          }
+        }
+      },
+
+
+
+
+
+      "/categorie/addcategorie": {
+        "post": {
+          "tags": [
+            "categorie"
+          ],
+          "description": "Create new categorie in system",
+          "parameters": [
+            {
+              "name": "categorie",
+              "in": "body",
+              "description": "categorie that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New categorie is created",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          }
+        }
+      },
+      "/categorie/allcategorie": {
+   
+        "get": {
+          "tags": [
+            "categorie"
+          ],
+          "summary": "Get all categorie in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          }
+        }
+      },
+      "/categorie/getcategoriebyid/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of categorie that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "categorie"
+          ],
+          "summary": "Get categorie with given ID",
+          "responses": {
+            "200": {
+              "description": "categorie is found",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          }
+        
+        }
+      },
+      "/categorie/deletecategorie/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of categorie that we want to find",
+            "type": "string"
+          }
+        ],
+   
+        "delete": {
+          "summary": "Delete categorie with given ID",
+          "tags": [
+            "categorie"
+          ],
+          "responses": {
+            "200": {
+              "description": "categorie is deleted",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          }
+        }
+      },
+      "/categorie/updatecategorie/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of categorie that we want to find",
+            "type": "string"
+          }
+        ],
+  
+        "put": {
+          "summary": "Update categorie with give ID",
+          "tags": [
+            "categorie"
+          ],
+          "parameters": [
+            {
+              "name": "categorie",
+              "in": "body",
+              "description": "categorie with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "categorie is updated",
+              "schema": {
+                "$ref": "#/definitions/Categorie"
+              }
+            }
+          }
+        }
+      },
+
+
+
+      "/utilisateur/signin": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "connect  user ",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to connect",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "user connected",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/utilisateur/refrech": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "refrech token ",
+          "parameters": [
+            {
+              "name": "x-access-token",
+              "in": "body",
+              "description": "refrech token",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "token refreched",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/utilisateur/logout": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "logout  user ",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "X-acess-token",
+              "description": "token expired",
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+              "required": "true"
+              
+              }
+            },
+            {
+              "in": "body",
+              "name": "X-refrechToken",
+              "description": "refrechtoken expired",
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+              "required": "true"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "user disconnected",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/utilidateur/sendMail": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "send email ",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "email that we want to sended",
+              "schema": {
+                "$ref": "#/definitions/sendmail"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "email sended",
+              "schema": {
+                "$ref": "#/definitions/sendmail"
+              }
+            }
+          }
+        }
+      },
+      "/utilisateur/forgotPass": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": " forgot password ",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "forgot password",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Email has been send",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/utilisateur/resetPass": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Reset password  ",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Reset password ",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Password has been changed!",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+    "definitions": {
+
+      "User": {
+        "discriminator": "admin,entreprise,condidat",
+        "required": [
+          
+          "email",
+          "password"
+
+        ],
+
+        "properties": {
+        
+
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string"
+
+          }
+        }
+      },
+
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      },
+
+      "Admin": {
+        "allOf":[{
+          "$ref": "#/definitions/User" 
+        }]
+      },
+      "admin": {
+        "type": "array",
+        "$ref": "#/definitions/Admin"
+      },
+
+
+      "Entreprise": {
+        "allOf":[{
+          "$ref": "#/definitions/User" }],
+        "required": [
+          " nom",
+          "adresse",
+          "compétences",
+          "spécialité",
+          "téléphone"
+
+        ],
+
+        "properties": {
+
+          "nom":{
+
+            "type":"String"
+          
+        },
+    
+        "adresse":{
+        
+            "type":"String"
+              
+        },
+    
+        "téléphone" : {
+    
+            "type":"Number"  
+          
+        },
+    
+    "compétences":{
+        
+            "type":"String"
+       
+        },
+    
+     "spécialité":{
+        
+          "type":"String"
+      },
+    
+       "valid":{
+           "type":"Boolean"
+        }
+      },
+
+          "commentaire":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Commentaire"
+
+          }}},
+
+          "offreEmploi":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/OffreEmploi"
+
+          }}},
+
+
+
+          "test":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Test"
+
+          }}}
+       
+
+        },
+      "entreprise": {
+        "type": "array",
+        "$ref": "#/definitions/Entreprise"
+      },
+
+
+      "Condidat": {
+        "allOf":[{
+          "$ref": "#/definitions/User" }],
+        "required": [
+          " nom",
+          "prenom",
+          "adresse",
+          "téléphone"
+          
+
+        ],
+
+        "properties": {
+
+          "nom":{
+
+            "type":"String"
+          
+        },
+        "prenom":{
+        
+          "type":"String"
+            
+      },
+  
+        "adresse":{
+        
+            "type":"String"
+              
+        },
+    
+        "téléphone" : {
+    
+            "type":"Number"  
+          
+        }
+      },
+
+          "condidature":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Condidature"
+
+          }}},
+
+          "commentaire":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Commentaire"
+
+          }}},
+
+          "test":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Test"
+
+          }}}
+       
+
+        },
+      "condidat": {
+        "type": "array",
+        "$ref": "#/definitions/Condidat"
+      },
+
+
+      "Condidature": {
+
+        "required": [
+          "cv",
+          "LM"
+        ],
+
+        "properties": {
+
+          "cv":{
+
+            "type":"String"
+          
+        },
+        "LM":{
+        
+          "type":"String"
+            
+      }
+  
+      },
+
+          "offreEmploi":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/OffreEmploi"
+
+          }}},
+
+          "condidat":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Condidat"
+
+          }}}
+        },
+      "condidature": {
+        "type": "array",
+        "$ref": "#/definitions/Condidature"
+      },
+
+
+      "Categorie": {
+
+        "required": [
+          "nom_categorie"
+
+        ],
+
+        "properties": {
+
+          "nom_categorie":{
+
+            "type":"String"
+          
+        }
+    
+      },
+
+          "offreEmploi":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/OffreEmploi"
+
+          }}}
+       
+
+        },
+      "categorie": {
+        "type": "array",
+        "$ref": "#/definitions/Categorie"
+      },
+
+
+      "Commentaire": {
+
+        "required": [
+
+          " msg"
+        
+        ],
+
+        "properties": {
+
+          "msg":{
+
+            "type":"String"
+          
+        }
+     
+      },
+
+      "entreprise":{
+
+        "type":"array",
+        "items":{
+          "type":"string",
+        "x-swagger-mongoose":{
+        "$ref": "#/definitions/Entreprise"
+
+      }}},
+
+          "condidat":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Condidat"
+
+          }}},
+
+          "offreEmploi":{
+
+            "type":"object",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/OffreEmploi"
+
+          }}}
+
+        },
+      "commentaire": {
+        "type": "array",
+        "$ref": "#/definitions/Commentaire"
+      },
+
+
+      "OffreEmploi": {
+
+        "required": [
+          " type_contrat",
+          "lieu"
+          
+
+        ],
+
+        "properties": {
+
+          "type_contrat":{
+
+            "type":"String"
+          
+        },
+        "lieu":{
+        
+          "type":"String"
+            
+      }
+     
+      },
+
+      "entreprise":{
+
+        "type":"array",
+        "items":{
+          "type":"string",
+        "x-swagger-mongoose":{
+        "$ref": "#/definitions/Entreprise"
+
+      }}},
+
+          "condidature":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Condidature"
+
+          }}},
+
+          "commentaire":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Commentaire"
+
+          }}},
+
+          "test":{
+
+            "type":"object",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Test"
+
+          }}}
+       
+
+        },
+      "offreEmploi": {
+        "type": "array",
+        "$ref": "#/definitions/OffreEmploi"
+      },
+
+      "Test": {
+
+        "required": [
+          "date_test",
+          "mode"
+          
+
+        ],
+
+        "properties": {
+
+          "date_test":{
+
+            "type":"String"
+          
+        },
+        "mode":{
+        
+          "type":"String"
+            
+      }
+     
+      },
+
+      "entreprise":{
+
+        "type":"object",
+        "items":{
+          "type":"string",
+        "x-swagger-mongoose":{
+        "$ref": "#/definitions/Entreprise"
+
+      }}},
+
+          "condidat":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/Condidat"
+
+          }}},
+
+          "offreEmploi":{
+
+            "type":"array",
+            "items":{
+              "type":"string",
+            "x-swagger-mongoose":{
+            "$ref": "#/definitions/OffreEmploi"
+
+          }}}
+
+        },
+      "test": {
+        "type": "array",
+        "$ref": "#/definitions/Test"
+      }
+
+}
+}
