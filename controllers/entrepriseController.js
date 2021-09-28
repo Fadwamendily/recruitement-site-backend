@@ -89,22 +89,32 @@ module.exports = {
     updateEntrepriseById: function (req, res) {
 
 
-
-        entrepriseModel.updateOne({ _id: req.params.id }, req.body, (err, entreprise) => {
-            if (err) {
-
-                res.json({ message: 'error update  one entreprise' + err, data: null, status: 500 })
+        /* 
+                entrepriseModel.updateOne({ _id: req.params.id }, req.body, (err, entreprise) => {
+                    if (err) {
+        
+                        res.json({ message: 'error update  one entreprise' + err, data: null, status: 500 })
+                    } else {
+        
+                        res.json({ message: 'one entreprise updated', data: entreprise, status: 200 })
+        
+                    }
+        
+                }) */
+        entrepriseModel.findOneAndUpdate({ _id: req.params.id }, req.body, (err, entreprise) => {
+            if (!entreprise) {
+                res.status(500).json({
+                    message: "entreprise not updated ",
+                    data: null,
+                });
             } else {
-
-                res.json({ message: 'one entreprise updated', data: entreprise, status: 200 })
-
+                res.status(200).json({
+                    message: "entreprise updated successfuly ",
+                    data: req.body,
+                });
             }
-
-        })
-
-
-
-    },
+        });
+    }
 
 
 

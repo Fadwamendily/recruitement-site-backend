@@ -1,114 +1,112 @@
 const OffreEmploiModel = require('../models/offreEmploiModel');
 
 
-module.exports={
+module.exports = {
 
-    createOffreEmploi:function(req,res){
-    
-    OffreEmploiModel.create(req.body,function(err,OffreEmploi){
-    
-    if (err) {
-    
-        res.json({message:'error add OffreEmploi'+err,data:null ,status:500})
-        
-    } else {
-        
-        res.json({message:'OffreEmploi added successfuly',data:OffreEmploi ,status:200})
-    }
-    
-    
-    })
-    
-    
-    },
-    
-    
-    
-    getAllOffreEmploi: async(req,res)=>{
-    
-    
-    
-    OffreEmploiModel.find({}).populate('test','date,mode').populate('entreprise').populate('commentaire').populate('categorie'),(err,OffreEmploi)=>{
-    
-    if (err) {
-        
-        res.json({message:'error get all OffreEmplois'+err,data:null ,status:500})
-    } else {
-        
-        res.json({message:'all OffreEmplois in system',data:OffreEmploi ,status:200})
-    
-    }
-    
-    }
-    
-    },
-    
-    
-    getOffreEmploiById :function(req,res){
-    
-        OffreEmploiModel.findById({_id:req.params.id}).populate('test','date,mode').populate('entreprise').populate('commentaire'),(err,OffreEmploi)=>{
-    
+    createOffreEmploi: function (req, res) {
+
+        OffreEmploiModel.create(req.body, function (err, OffreEmploi) {
+
             if (err) {
 
-                
-                res.json({message:'error get one OffreEmploi'+err, data:null ,status:500})
+                res.json({ message: 'error add OffreEmploi' + err, data: null, status: 500 })
 
-            } 
+            } else {
+
+                res.json({ message: 'OffreEmploi added successfuly', data: OffreEmploi, status: 200 })
+            }
+
+
+        })
+
+
+    },
+
+
+
+    getAllOffreEmploi: async (req, res) => {
+
+
+
+        OffreEmploiModel.find({})
+            .populate('entreprise')
+            .then(OffreEmploi => {
+                res.json({ message: 'all OffreEmplois in system', data: OffreEmploi, status: 200 })
+
+            })
+            .catch(err => {
+                res.json({ message: 'error get all OffreEmplois' + err, data: null, status: 500 })
+
+            })
+
+    },
+
+
+    getOffreEmploiById: function (req, res) {
+
+        OffreEmploiModel.findById({ _id: req.params.id }).populate('test', 'date,mode').populate('entreprise').populate('commentaire'), (err, OffreEmploi) => {
+
+            if (err) {
+
+
+                res.json({ message: 'error get one OffreEmploi' + err, data: null, status: 500 })
+
+            }
 
             else {
-                
-                res.json({message:'one OffreEmploi in system',data:OffreEmplois,status:200})
-            
-            }
-            
-            
-            }
-    },
-    
 
-    deleteOffreEmploiById :function(req,res){
-    
-        OffreEmploiModel.findByIdAndDelete({_id:req.params.id},(err,OffreEmploi)=>{
-    
-            if (err) {
-                
-                res.json({message:'error delete  one OffreEmploi'+err,data:null ,status:500})
-            } else {
-                
-                res.json({message:'one OffreEmploi delete system', data:OffreEmploi ,status:200})
-            
+                res.json({ message: 'one OffreEmploi in system', data: OffreEmplois, status: 200 })
+
             }
-            
-            })
-            
-    
-    
-    } ,
-    
-    
-    
-    
-    
-    updateOffreEmploiById :function(req,res){
-    
-       
-    
-        OffreEmploiModel.updateOne({_id:req.params.id},req,body,(err,OffreEmploi)=>{
-            if (err) {
-                
-                res.json({message:'error update  one OffreEmploi'+err,data:null ,status:500})
-            } else {
-                
-                res.json({message:'one OffreEmploi updated', data:OffreEmploi ,status:200})
-            
-            }
-            
-            })
-            
-    
-    
+
+
+        }
     },
-    
+
+
+    deleteOffreEmploiById: function (req, res) {
+
+        OffreEmploiModel.findByIdAndDelete({ _id: req.params.id }, (err, OffreEmploi) => {
+
+            if (err) {
+
+                res.json({ message: 'error delete  one OffreEmploi' + err, data: null, status: 500 })
+            } else {
+
+                res.json({ message: 'one OffreEmploi delete system', data: OffreEmploi, status: 200 })
+
+            }
+
+        })
+
+
+
+    },
+
+
+
+
+
+    updateOffreEmploiById: function (req, res) {
+
+
+
+        OffreEmploiModel.updateOne({ _id: req.params.id }, req, body, (err, OffreEmploi) => {
+            if (err) {
+
+                res.json({ message: 'error update  one OffreEmploi' + err, data: null, status: 500 })
+            } else {
+
+                res.json({ message: 'one OffreEmploi updated', data: OffreEmploi, status: 200 })
+
+            }
+
+        })
+
+
+
+    },
+
 
 
 

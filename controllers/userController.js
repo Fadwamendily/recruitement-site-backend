@@ -1,4 +1,5 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { request } = require('express');
 var jwt = require("jsonwebtoken");
 var _ = require("lodash");
 var nodemailer = require("nodemailer");
@@ -14,7 +15,7 @@ module.exports = {
 
     getAllUser: async (req, res) => {
 
-        UserModel.find({})
+        userModel.find({})
             .populate('test', 'valide')
             .populate('Userure', 'cv')
             .then(Users => {
@@ -34,25 +35,25 @@ module.exports = {
 
     getUserById: function (req, res) {
 
-        UserModel.findById({ _id: req.params.id }).populate('test', 'validate').populate('Userure', 'cv'), (err, User) => {
+        userModel.findById({ _id: req.params.id } /* .populate('test', 'validate').populate('Userure', 'cv') */, (err, User) => {
 
             if (err) {
 
                 res.json({ message: 'error get one User' + err, data: null, status: 500 })
             } else {
 
-                res.json({ message: 'one User in system', data: Users, status: 200 })
+                res.json({ message: 'one User in system', data: User, status: 200 })
 
             }
 
-        }
+        })
     },
 
 
 
     deleteUserById: function (req, res) {
 
-        UserModel.findByIdAndDelete({ _id: req.params.id }, (err, User) => {
+        userModel.findByIdAndDelete({ _id: req.params.id }, (err, User) => {
 
             if (err) {
 
@@ -73,28 +74,35 @@ module.exports = {
 
 
 
-    updateUserById: function (req, res) {
 
 
 
-        UserModel.updateOne({ _id: req.params.id }, req.body, (err, User) => {
-            if (err) {
-
-                res.json({ message: 'error update  one User' + err, data: null, status: 500 })
+    updateUserById: (req, res) => {
+        console.log(req.body);
+        userModel.findOneAndUpdate({ _id: req.params.id  }, req.body, (err, user) => {
+            if (!user) {
+                res.status(500).json({
+                    message: "user not updated ",
+                    data: null,
+                });
             } else {
-
-                res.json({ message: 'one User updated', data: User, status: 200 })
-
+                res.status(200).json({
+                    message: "user updated successfuly ",
+                    data: user,
+                });
             }
-
-        })
-
-
-
+        });
     },
 
 
-    signin: function(req, res) {
+
+
+
+
+
+
+
+    signin: function (req, res) {
         userModel.findOne({
             email: req.body.email
         }, (err, user) => {
@@ -131,7 +139,7 @@ module.exports = {
             });
         })
     },
-    refreshToken: function(req, res) {
+    refreshToken: function (req, res) {
         var id = req.body._id
         var refreshToken = req.body.refreshToken
         console.log('inBody', req.body)
@@ -148,7 +156,7 @@ module.exports = {
         }
     },
 
-    LogOut: function(req, res) {
+    LogOut: function (req, res) {
         var refreshToken = req.body.refreshToken
 
         jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'))
@@ -159,7 +167,7 @@ module.exports = {
     },
 
 
-    sendMail: function(req, res) {
+    sendMail: function (req, res) {
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -181,7 +189,7 @@ module.exports = {
 
         };
 
-        transporter.sendMail(mailOptions, function(error, info) {
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 res.json({ message: 'error ' + error });
             } else {
@@ -196,7 +204,7 @@ module.exports = {
 
 
 
-    forgotPassword: function(req, res) {
+    forgotPassword: function (req, res) {
         const Email = req.body.email;
         userModel.findOne({ email: Email }, (err, user) => {
             if (err || !user) {
@@ -227,7 +235,7 @@ module.exports = {
                             pass: '***********',
                         },
                     });
-                    transporter4.sendMail(data, function(error, info) {
+                    transporter4.sendMail(data, function (error, info) {
                         if (error) {
                             console.log(error);
                             return res.json({ err: 'Error in email' });
@@ -245,14 +253,14 @@ module.exports = {
 
 
 
-    resetPassword: function(req, res) {
+    resetPassword: function (req, res) {
         resetLink = req.body.resetLink;
         newPass = req.body.newPass;
         if (resetLink) {
             jwt.verify(
                 resetLink,
                 req.app.get('secretKey'),
-                function(err, decodeData) {
+                function (err, decodeData) {
                     if (err) {
                         return res.json({
                             message: 'invalid token',
@@ -297,24 +305,24 @@ module.exports = {
     },
     uploadavatar: (req, res) => {
         const data = {
-          avatar: req.file.filename,
+            avatar: req.file.filename,
         };
-    
+
         userModel.findByIdAndUpdate({ _id: req.params.id }, data, (err, user) => {
-          if (err) {
-            res.status(500).json({ message: "avatar not uploaded" });
-          } else {
-            userModel.findById({ _id: user.id }, (err, user) => {
-              if (err) {
-                res.json("error");
-              } else {
-                res.status(200).json({
-                  message: "user updated",
-                  data: user,
+            if (err) {
+                res.status(500).json({ message: "avatar not uploaded" });
+            } else {
+                userModel.findById({ _id: user.id }, (err, user) => {
+                    if (err) {
+                        res.json("error");
+                    } else {
+                        res.status(200).json({
+                            message: "user updated",
+                            data: user,
+                        });
+                    }
                 });
-              }
-            });
-          }
+            }
         });
-      },
+    },
 }

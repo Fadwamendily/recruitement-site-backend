@@ -44,7 +44,8 @@ const userSchema = new Schema({
 
   },
   avatar: {
-    type: String
+    type: String,
+    default: 'useravatar.png'
   }
 },
   { timestamps: true }
