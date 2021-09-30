@@ -1,10 +1,12 @@
 const condidatureController =require('../controllers/condidatureController');
 const express=require('express');
-const upload = require('../midlware/uploadFile')
+
+const upload = require('../midlware/uploadFile');
+
 
 const route= express.Router();
 
-route.post('/addcondidature',upload.single('pdf'),condidatureController.createCondidature)
+route.post('/',upload.single('pdf'),condidatureController.createCondidature)
 route.get('/allcondidature',condidatureController.getAllCondidature)
 route.get('/getcondidaturebyid/:id',condidatureController.getCondidatureById)
 route.delete('/deletecondidaturebyid/:id',condidatureController.deleteCondidatureById)

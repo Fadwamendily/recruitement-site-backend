@@ -1,6 +1,5 @@
 const condidatController =require('../controllers/condidatController');
 const express=require('express');
-
 const route= express.Router();
 
 route.post('/',condidatController.createCondidat)

@@ -32,9 +32,8 @@ const condidatSchema = new Schema({
     },
     categorie:{
     
-        type:String,
-        
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "categorie"
         
     },
 

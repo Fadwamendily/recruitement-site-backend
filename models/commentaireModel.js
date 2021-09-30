@@ -1,44 +1,29 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
 
 const commentaireSchema = new Schema({
+
+  msg: {
+
+    type: String,
+    required: true
+
+  },
+
+
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user"
+  },
+
   
-    msg:{
-
-        type:String,
-        required:true
-
-    },
-
-
-entreprise:[{
-
-type:mongoose.Schema.Types.ObjectId,
-ref:"entreprise"
-
-}],
-
-condidat:[{
-
-  type:mongoose.Schema.Types.ObjectId,
-  ref:"condidat"
-  
-  }],
-
-
-offreEmploi:{
-
-  type:mongoose.Schema.Types.ObjectId,
-  ref:"offreEmploi"
-  
-  }
 },
 
-{timestamps:true}
+  { timestamps: true }
 
 )
 
 
-module.exports=mongoose.model('commentaire',commentaireSchema);
+module.exports = mongoose.model('commentaire', commentaireSchema);

@@ -2,7 +2,7 @@ const CondidatureModel = require('../models/condidatureModel');
 
 module.exports={
 
-    createCondidature:function(req,res){
+    createCondidature:function(req,res ,next ){
     
         let cvv =req.file
         let lm =req.file
@@ -20,7 +20,8 @@ module.exports={
               if (err) {
                   res.json({message:'error add model'+err,data:null,status:500})
               } else {
-                  res.json({message:'Model created successfully',data:condidature,status:200})
+/*                   res.json({message:'Model created successfully',data:condidature,status:200})
+ */                  next()
               }
           })
         }

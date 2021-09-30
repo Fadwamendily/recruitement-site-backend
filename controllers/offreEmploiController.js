@@ -30,6 +30,13 @@ module.exports = {
 
         OffreEmploiModel.find({})
             .populate('entreprise')
+            .populate({
+                path: 'commentaires',
+                populate: {
+                    path: 'user'
+                }
+            })
+            .populate('categorie')
             .then(OffreEmploi => {
                 res.json({ message: 'all OffreEmplois in system', data: OffreEmploi, status: 200 })
 
@@ -44,23 +51,24 @@ module.exports = {
 
     getOffreEmploiById: function (req, res) {
 
-        OffreEmploiModel.findById({ _id: req.params.id }).populate('test', 'date,mode').populate('entreprise').populate('commentaire'), (err, OffreEmploi) => {
-
-            if (err) {
-
-
-                res.json({ message: 'error get one OffreEmploi' + err, data: null, status: 500 })
-
+        OffreEmploiModel.findById({_id : req.params.id})
+        .populate('entreprise')
+        .populate({
+            path: 'commentaires',
+            populate: {
+                path: 'user'
             }
+        })
+        .populate('categorie')
+        .then(offre => {
+            res.json({ message: 'all OffreEmplois in system', data: offre, status: 200 })
 
-            else {
+        })
+        .catch(err => {
+            res.json({ message: 'error get all OffreEmplois' + err, data: null, status: 500 })
 
-                res.json({ message: 'one OffreEmploi in system', data: OffreEmplois, status: 200 })
+        })
 
-            }
-
-
-        }
     },
 
 

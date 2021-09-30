@@ -37,9 +37,8 @@ const entrepriseSchema = new Schema({
 
     categorie:{
     
-        type:String,
-        
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "categorie"
         
     },
 

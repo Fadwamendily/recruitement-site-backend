@@ -49,7 +49,7 @@ const offreEmploiSchema = new Schema({
 
         }],
 
-        commentaire: [{
+        commentaires: [{
 
             type: mongoose.Schema.Types.ObjectId,
             ref: "commentaire"
