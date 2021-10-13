@@ -2,7 +2,7 @@ const express = require('express');
 const database = require('./config/database')
 var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./config/swagger.json');
-
+    const cookieParser = require('cookie-parser');
 
 const port = 5000
 const app = express();
@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 // parse application/json
 app.use(express.json())
+app.use(cookieParser())    //<----- This middleware is needed to read Cookie from request. Without it, we'll get no req.cookie...
+app.use(express.json())    //<----- this middleware is needed to read JSON from request. Without it, we'll get req.body == undefined.
 
 const adminRouter = require('./routers/adminRouter');
 const categorieRouter = require('./routers/categorieRouter');

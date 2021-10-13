@@ -3,11 +3,8 @@ const { request } = require('express');
 var jwt = require("jsonwebtoken");
 var _ = require("lodash");
 var nodemailer = require("nodemailer");
-
 var refreshTokens = {} //dectation de nouveau jwt
-
 const validator = require('validator')
-
 const userModel = require('../models/UserModel');
 require('dotenv').config()
 
@@ -70,13 +67,6 @@ module.exports = {
 
     },
 
-
-
-
-
-
-
-
     updateUserById: (req, res) => {
         console.log(req.body);
         userModel.findOneAndUpdate({ _id: req.params.id  }, req.body, (err, user) => {
@@ -93,80 +83,40 @@ module.exports = {
             }
         });
     },
+    login: (req, res) => {
+        const { id, email, role } = req.user;
+        const token = signToken(id);
 
+        res.cookie("access_token", token, { maxAge: 3600 * 1000, httpOnly: true, sameSite: true });
 
-
-
-
-
-
-
-
-    signin: function (req, res) {
-        userModel.findOne({
-            email: req.body.email
-        }, (err, user) => {
-            if (err) {
-                res.status(500).send({ message: err });
-                return;
-            }
-            if (!user) {
-                return res.status(400).send({ message: "User Not found." });
-            }
-            var passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                user.password
-            );
-            if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: "Invalid Password!"
-                });
-            }
-            var token = jwt.sign({ id: user.id }, process.env.SEKRET, {
-                expiresIn: 86400 // 24 hours
-            });
-            var refreshToken = jwt.sign({ id: user.id }, process.env.SEKRET, {
-                expiresIn: 86400 // 24 hours
-            });
-            refreshTokens[refreshToken] = user._id
-            res.status(200).send({
-                message: 'user found',
-                user: user,
-                accessToken: token,
-                refreshToken: refreshToken,
-                status: 200
-            });
-        })
-    },
-    refreshToken: function (req, res) {
-        var id = req.body._id
-        var refreshToken = req.body.refreshToken
-        console.log('inBody', req.body)
-        console.log('refreshTokens', (refreshTokens[refreshToken] == id))
-        console.log('refresh', (refreshToken in refreshTokens))
-        if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] == id)) {
-            var userId = {
-                'id': id
-            }
-            var token = jwt.sign(userId, req.app.get('secretKey'), { expiresIn: 3600 })
-            res.json({ accesstoken: token })
-        } else {
-            res.sendStatus(401)
-        }
-    },
-
-    LogOut: function (req, res) {
-        var refreshToken = req.body.refreshToken
-
-        jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'))
-        if (refreshToken in refreshTokens) {
-            delete refreshTokens[refreshToken]
-        }
-        res.json({ msg: 'token experied', status: 204 })
+        return res.status(200).json({ isAuthenticated: true, user: { email, role } })
     },
 
 
+    protectedData: (req, res) => {
+        return res.status(200).json({ data: "Protected data...hehehe" })
+    },
+
+
+    AdminprotectedData: (req, res) => {
+        const { role } = req.user;
+        if (role === "admin")
+            return res.status(200).json({ data: "Admin Protected data...hehehe" })
+        return res.status(403).json({ data: "" })
+    },
+
+
+    authenticated: (req, res) => {
+        const { email, role } = req.user;
+        return res.status(200).json({ isAuthenticated: true, user: { email, role } })
+    },
+
+
+    logout: (req, res) => {
+        res.clearCookie("access_token");
+        return res.status(200).json({ success: true, user: { email: "", role: "" } })
+    },
+    
     sendMail: function (req, res) {
 
         var transporter = nodemailer.createTransport({
